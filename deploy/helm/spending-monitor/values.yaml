@@ -16,8 +16,8 @@ llm-service:
   enabled: false  # vLLM-based model serving (for larger models like 70B)
 
 llama-stack:
-  enabled: false  # Meta's Llama Stack distribution (for smaller models like 1B-3B)
-  # Set to true if using LLM_PROVIDER=llamastack
+  enabled: true  # Meta's Llama Stack distribution (for smaller models like 1B-3B)
+  # Enabled by default - set to false if using a different LLM provider
 
 # Secrets configuration - these values should be overridden with actual secrets
 secrets:
@@ -30,11 +30,14 @@ secrets:
   DATABASE_URL: "postgresql+asyncpg://user:changeme@spending-monitor-db:5432/spending-monitor"
   API_KEY: "changeme"
   BASE_URL: "http://localhost:8000"
-  LLM_PROVIDER: "openai"
-  MODEL: "llama-3-3-70b-instruct-w8a8"
+  LLM_PROVIDER: "llamastack"
+  MODEL: "meta-llama/Llama-3.2-3B-Instruct"  # Used as fallback, LLAMASTACK_MODEL takes precedence
   ENVIRONMENT: "production"
   DEBUG: "false"
   BYPASS_AUTH: "false"
+  # LlamaStack configuration
+  LLAMASTACK_BASE_URL: "http://llamastack:8321"
+  LLAMASTACK_MODEL: "meta-llama/Llama-3.2-3B-Instruct"
   CORS_ALLOWED_ORIGINS: '["*"]'
   ALLOWED_ORIGINS: '["*"]'
   ALLOWED_HOSTS: '["*"]'

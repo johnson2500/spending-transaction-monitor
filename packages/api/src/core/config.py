@@ -42,11 +42,11 @@ class Settings(BaseSettings):
     )
 
     # LLM settings
-    LLM_PROVIDER: str = 'openai'
+    LLM_PROVIDER: str = 'llamastack'  # Default to LlamaStack
     NODE_ENV: str = 'development'
     BASE_URL: str = ''
     API_KEY: str = ''
-    MODEL: str = 'gpt-3.5-turbo'
+    MODEL: str = 'meta-llama/Llama-3.2-3B-Instruct'  # Used as fallback, LLAMASTACK_MODEL takes precedence
     LLAMASTACK_BASE_URL: str = 'http://localhost:8321'
     LLAMASTACK_MODEL: str = 'meta-llama/Llama-3.2-3B-Instruct'
 
